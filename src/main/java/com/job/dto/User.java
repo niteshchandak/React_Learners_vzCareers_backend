@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "user")
 public class User {	
 	
-		
+	 @Id
 	    private String id;	   
 		 @Indexed
-		 @Id
+		 //@Id
 		 private String emailid;
 		 private String fistname;
 		 private String lastname;

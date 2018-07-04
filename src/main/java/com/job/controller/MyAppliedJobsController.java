@@ -125,15 +125,23 @@ public class MyAppliedJobsController {
 			System.out.println("myAppliedJob= {}"+myAppliedJob);
 			List<Map<String,String>> object = new ArrayList<Map<String,String>>();
 			MyAppliedJob response = null;
+			String jobSysid=null;
 			System.out.println("jobDetails= {}"+myAppliedJobRepository.existsById(myAppliedJob.getJobid()));
 			Map<String,String> obj = new HashMap<String, String>();
 			if(myAppliedJobRepository.existsById(myAppliedJob.getJobid()))
 			{
 				List<MyAppliedJob> res =	myAppliedJobRepository.findByJobid(myAppliedJob.getJobid());
-				res
+				List<MyAppliedJob> appliedJob = new ArrayList<MyAppliedJob>();   
+				for(MyAppliedJob dto:res){  
+					MyAppliedJob myajob = new MyAppliedJob();  
+					System.out.println("my appliced job id"+dto.getId());
+					jobSysid =dto.getId();
+					myAppliedJob.setJobid(jobSysid);
+				}   
 					
 				
 			}
+			myAppliedJob.setJobid(jobSysid);
 			if(myAppliedJobRepository.existsById(myAppliedJob.getJobid()))
 			{
 			 

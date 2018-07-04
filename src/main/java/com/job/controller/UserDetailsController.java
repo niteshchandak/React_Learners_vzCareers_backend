@@ -64,18 +64,22 @@ UserRepository userRepository;
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Sucessfull", response = String.class),
 			@ApiResponse(code = 500, message = "Internal server error"), })
 	public List<Map<String,String>> adduser(@RequestBody User user) throws Exception {
-		System.out.println("jobDetails= {}"+user);
+		System.out.println("careers/adduser Json::::::::= {}"+user);
 		List<Map<String,String>> object = new ArrayList<Map<String,String>>();
 		User response = null;
-		System.out.println("jobDetails= {}"+userRepository.existsById(user.getEmailid()));
+		System.out.println("mail :"+user.getEmailid()+"\n dob:"+user.getDateofbirth()+"\n firstname:"+user.getFistname()+"\n lastename:"+user.getLastname()+"\n mobilenumebr"+user.getMobilenumber());
+		
+		System.out.println("Emaild existing or not ::"+userRepository.existsById(user.getEmailid()));
 		Map<String,String> obj = new HashMap<String, String>();
 		if(!userRepository.existsById(user.getEmailid()))
 		{
+			System.out.println("im in New User");
 		 response =   userRepository.save(user);
 		 obj.put("Success", "User added successfully");
 		}
 		else
 		{
+			System.out.println("im in New User");
 			obj.put("failure", "User already existing");
 		}		
 		System.out.println("response= {}" + response);
